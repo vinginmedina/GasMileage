@@ -1,0 +1,38 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/setFileName"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/file_name"/>
+    
+    <item 
+        android:id="@+id/resetFileName"
+        android:orderInCategory="200"
+        android:showAsAction="never"
+        android:title="@string/reset_name"/>
+    <item
+        android:id="@+id/saveFile"
+        android:orderInCategory="300"
+        android:showAsAction="never"
+        android:title="@string/saveFile"/>
+    
+    <item
+        android:id="@+id/saveFileAs"
+        android:orderInCategory="400"
+        android:showAsAction="never"
+        android:title="@string/saveFileAs"/>
+    
+    <item
+        android:id="@+id/emailFile"
+        android:orderInCategory="500"
+        android:showAsAction="never"
+        android:title="@string/email"/>
+    
+    <item
+        android:id="@+id/calcSavings"
+        android:orderInCategory="600"
+        android:showAsAction="never"
+        android:title="@string/savings"/>
+    
+</menu>

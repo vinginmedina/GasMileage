@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/savingsUsage"
+	        android:textSize="15sp" />
+    <View android:layout_width="fill_parent"
+       android:layout_height="1dp"
+       android:background="@android:color/black"/>
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+	    <TextView android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/newMPG"
+	        android:textSize="20sp" />
+	    <EditText
+	        android:id="@+id/newMPG"
+	        android:layout_width="0dip"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:ems="20"
+	        android:inputType="numberDecimal" >
+	    </EditText>
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+	    <Button android:id="@+id/enter"
+	        android:layout_height="wrap_content"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:text="@string/savings"
+	        android:textSize="15sp" />
+	    <Button android:id="@+id/cancel"
+	        android:layout_height="wrap_content"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:text="@string/cancel"
+	        android:textSize="15sp" />
+	</LinearLayout>
+
+</LinearLayout>

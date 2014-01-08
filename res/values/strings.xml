@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Gas Mileage</string>
+    <string name="total">Total Values</string>
+    <string name="last">Last Fillup Values</string>
+    <string name="addNew">Add New Mileage Data</string>
+    <string name="file_name">Open File</string>
+    <string name="reset_name">Reset File Name</string>
+    <string name="saveFile">Save the CSV File</string>
+    <string name="saveFileAs">Save the CSV As...</string>
+    <string name="email">E-Mail the CSV File</string>
+    <string name="savings">Calculate Savings</string>
+    <string name="date">Date of Purchase: </string>
+    <string name="newDate">Update the date</string>
+    <string name="miles">Odometer Reading: </string>
+    <string name="trip">Trip Miles: </string>
+    <string name="gallons">Gallons of Gas: </string>
+    <string name="cost">Cost of fillup: </string>
+    <string name="enter">Enter Values</string>
+    <string name="cancel">Cancel</string>
+    <string name="savingsUsage">Calculate the saving in gas if you were driving a car that had this MPG raiting insted of the value of your current car.</string>
+    <string name="newMPG">New MPG Value</string>
+
+</resources>
