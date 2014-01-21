@@ -38,21 +38,15 @@ public class ReadMileageData extends AsyncTask<MyApplication, Integer, MyApplica
 	}
 
 	protected MyApplication doInBackground(MyApplication... myApps) {
-		MileageData md;
 		Log.i("ReadMileageData","In doInBackground "+myFile.toString());
+		myApps[0].clearRowData();
 		try {
 			FileInputStream iStream =  new FileInputStream(myFile);
 			InputStreamReader iStreamReader = new InputStreamReader(iStream);
 			BufferedReader myReader = new BufferedReader(iStreamReader);
 			String row = "";
 			while ((row = myReader.readLine()) != null) {
-				String[] rowData = row.split(",");
-				try {
-					md = myApps[0].addData(rowData);
-				} catch (Exception e) {
-//					Log.e("ReadMileageData","Error: "+e.toString());
-					parsingErrors += "\n" + row + "\n" + e.toString() + "\n";
-				}
+				myApps[0].saveRow(row);
 			}
 			myReader.close();
 		}catch(Exception e) {
@@ -61,9 +55,7 @@ public class ReadMileageData extends AsyncTask<MyApplication, Integer, MyApplica
 			cancel(true);
 		}
 		if (! isCancelled()) {
-			myApps[0].calcValues();
 			Log.i("ReadMileageData","Abount to set up YearList");
-//			myApps[0].setupYearList();
 		}
 		return myApps[0];
 	}
@@ -75,6 +67,7 @@ public class ReadMileageData extends AsyncTask<MyApplication, Integer, MyApplica
 	protected void onCancelled(MyApplication myApp) {
 		pd.cancel();
 		myApp.setFileState(false);
+		myApp.clearRowData();
 		AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 	    builder.setTitle("No Data Retrieved");
 	    builder.setMessage("Sorry, there was an error trying to read the file.\n" + errorMsg);
@@ -88,9 +81,23 @@ public class ReadMileageData extends AsyncTask<MyApplication, Integer, MyApplica
 	}
 	
 	protected void onPostExecute(MyApplication myApp) {
+		MileageData md;
 		Log.i("ReadMileageData","Finishing");
-		myApp.setFileState(true);
+		
+		for (String row : myApp.getRowData().split("\n")) {
+			if (! row.equals("")) {
+				String[] rowData = row.split(",");
+				try {
+					md = myApp.addData(rowData);
+				} catch (Exception e) {
+	//				Log.e("ReadMileageData","Error: "+e.toString());
+					parsingErrors += "\n" + row + "\n" + e.toString() + "\n";
+				}
+			}
+		}
+		myApp.clearRowData();
 		myApp.notifyDataSetChanged(true);
+		myApp.setFileState(true);
 		pd.cancel();
 		if (! parsingErrors.equals("")) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);

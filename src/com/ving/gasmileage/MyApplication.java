@@ -22,6 +22,7 @@ public class MyApplication extends Application {
 	private TextView totalView = null;
 	private TextView latestView = null;
 //	private ArrayList<MileageData> mileageArray = null;
+	private String rowData = null; 
 	private ArrayList<YearData> expandDataArray = null;
 	private MPGListAdapter expandableAdapter = null;
 	private int currMth;
@@ -62,7 +63,9 @@ public class MyApplication extends Application {
 	public void setUp() {
 		Log.i("MyApplication","Setting mileageArray to empty list");
 //		mileageArray = new ArrayList<MileageData>();
+//		expandableAdapter = null;
 		expandDataArray = new ArrayList<YearData>();
+		rowData = "";
 		totalMiles = 0;
 		totalGallons = 0;
 		totalCost = 0;
@@ -75,11 +78,30 @@ public class MyApplication extends Application {
 		return expandDataArray;
 	}
 	
+	public void clearRowData() {
+		rowData = "";
+	}
+	
+	public void saveRow(String row) {
+		rowData += row + "\n";
+	}
+	
+	public String getRowData() {
+		return rowData;
+	}
+	
 	public void setExpandAdapter(MPGListAdapter newAdapter, TextView totalArea, TextView lastArea, Context newContext) {
+		Log.i("myApplication","Saving List Adapter");
 		expandableAdapter = newAdapter;
 		totalView = totalArea;
 		latestView = lastArea;
 		mContext = newContext;
+	}
+	
+	public void notifyDataSetChanged() {
+		if (expandableAdapter != null) {
+			expandableAdapter.notifyDataSetChanged();
+		}
 	}
 	
 	public void notifyDataSetChanged(Boolean showLast) {
@@ -100,7 +122,6 @@ public class MyApplication extends Application {
 				latestView.setText(lastrow.toFullString());
 			}
 		}
-		expandableAdapter.notifyDataSetChanged();
 	}
 	
 	public MileageData addData(String[] newData) throws Exception {
@@ -137,6 +158,7 @@ public class MyApplication extends Application {
 			monthData = new MonthData(month, row);
 			yearData = new YearData(year, monthData);
 			expandDataArray.add(yearData);
+			notifyDataSetChanged();
 		}
 		return row;
 	}
@@ -194,6 +216,7 @@ public class MyApplication extends Application {
 			totalMPG = totalMiles / totalGallons;
 			totalPPG = totalCost / totalGallons;
 			totalPPM = totalCost / totalMiles;
+			notifyDataSetChanged();
 		}
 	}
 	
@@ -494,6 +517,7 @@ public class MyApplication extends Application {
 	    	mpg = miles / gallons;
 	    	ppg = cost / gallons;
 	    	ppm = cost / miles;
+	    	notifyDataSetChanged();
 	    }
 	    
 	    public String toString() {
@@ -625,6 +649,7 @@ public class MyApplication extends Application {
 	    	mpg = miles / gallons;
 	    	ppg = cost / gallons;
 	    	ppm = cost / miles;
+	    	notifyDataSetChanged();
 	    }
 	    
 	    public String toString() {

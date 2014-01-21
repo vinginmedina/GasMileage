@@ -428,6 +428,10 @@ public class MainActivity extends Activity {
 //		EditText et = null;
 //		
 //		super.onResume();
+//		Log.i("onResume","Resting stuff");
+//		myApp = (MyApplication) getApplication();
+//		myApp.clearExpandAdapter();
+//		setResultAdapter();
 //		et = (EditText)findViewById(R.id.od);
 //		et.setText("");
 //		et = (EditText)findViewById(R.id.miles);
@@ -438,10 +442,27 @@ public class MainActivity extends Activity {
 //		et.setText("");
 //	}
 	
-//	@Override
-//	public void onPause() {
-//		super.onPause();
-//	}
+	@Override
+	public void onPause() {
+		super.onPause();
+		Log.i("onPause","in onPause");
+//		if (myApp.changed()) {
+//			AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
+//            dialog.setTitle("File Not Saved, Exit Anyway?");
+//            dialog.setCancelable(false);
+//            dialog.setPositiveButton("Go Back and Save",new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog,int id) {
+//                	dialog.cancel();
+//                }
+//            });
+//            dialog.setNegativeButton("Exit Anyway", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog,int id) {
+//                    finish();
+//                }
+//            });
+//            dialog.show();
+//		}
+	}
 	
 //	@Override
 //    protected void onStop() {
