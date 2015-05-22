@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/bkground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+    
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
@@ -11,6 +17,9 @@
 	        android:layout_gravity="center_vertical"
 	        android:text="@string/date"
 	        android:textSize="15sp" />
+		<View android:layout_height="1dp"
+			android:layout_width="8dp"
+			android:background="@android:color/transparent"/>
 	    <Button android:id="@+id/dateVal"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -18,6 +27,11 @@
 	        android:textSize="15sp"
 	        android:background="@null" />
     </LinearLayout>
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+    
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
@@ -35,6 +49,11 @@
 	        android:inputType="numberDecimal" >
 	    </EditText>
     </LinearLayout>
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+    
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
@@ -52,6 +71,11 @@
 	        android:inputType="numberDecimal" >
 	    </EditText>
     </LinearLayout>
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+    
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
@@ -69,6 +93,11 @@
 	        android:inputType="numberDecimal" >
 	    </EditText>
     </LinearLayout>
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+    
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
@@ -86,6 +115,11 @@
 	        android:inputType="numberDecimal"
 	        android:imeOptions="actionDone" />
     </LinearLayout>
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="24dp"
+    	android:background="@android:color/transparent"/>
+    
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
@@ -93,12 +127,14 @@
 	        android:layout_height="wrap_content"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
+	        android:background="@drawable/button"
 	        android:text="@string/enter"
 	        android:textSize="15sp" />
 	    <Button android:id="@+id/cancel"
 	        android:layout_height="wrap_content"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
+	        android:background="@drawable/button"
 	        android:text="@string/cancel"
 	        android:textSize="15sp" />
 	</LinearLayout>

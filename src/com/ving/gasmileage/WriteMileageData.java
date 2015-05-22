@@ -2,78 +2,72 @@ package com.ving.gasmileage;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import com.ving.gasmileage.MyApplication.MileageData;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Environment;
-import android.util.Log;
 
-public class WriteMileageData extends AsyncTask<MyApplication, Integer, MyApplication> {
-	Context mContext;
+public class WriteMileageData implements Runnable {
+
+	private MyApplication myApp = null;
 	private String file = null;
 	private File dir = null;
 	private File myFile = null;
-	ProgressDialog pd = null;
-	public String errorMsg = null;
+	private File backupFile = null;
+	private Boolean canceled = false;
+	private String errorMsg = null;
 
-	WriteMileageData(Context context, String fileName) {
-		Log.i("WriteMileageData","Starting");
-		mContext = context;
+	WriteMileageData(String fileName, MyApplication myApp) {
+		this.myApp = myApp;
 	    file = fileName;
 	    dir = new File(Environment.getExternalStorageDirectory().toString(),"/GasMileage");
 	    myFile = new File(dir, file);
+	    backupFile = new File(dir, file+".backup");
 	}
 
-	protected void onPreExecute() {
-	    pd = ProgressDialog.show(mContext, "Writing", "Writing Data to "+file);
-	}
-
-	protected MyApplication doInBackground(MyApplication... myApps) {
+	@Override
+	public void run() {
 		MileageData md;
-		Log.i("WriteMileageData","In doInBackground "+myFile.toString());
-		try {
-			dir.mkdirs();
-			FileOutputStream iStream =  new FileOutputStream(myFile);
-			OutputStreamWriter iStreamWriter = new OutputStreamWriter(iStream);
-			BufferedWriter myWriter = new BufferedWriter(iStreamWriter);
-			myWriter.write(myApps[0].toCSV());
-			myWriter.close();
-		}catch(Exception e) {
-			Log.e("WriteMileageData","Error Processing file "+e.toString());
-			errorMsg = e.toString();
-			cancel(true);
+		if (myFile.exists()) {
+			try {
+				InputStream iStream = new FileInputStream(myFile);
+				OutputStream oStream = new FileOutputStream(backupFile);
+				byte[] buffer = new byte[1024];
+		        int read;
+		        while ((read = iStream.read(buffer)) != -1) {
+		            oStream.write(buffer, 0, read);
+		        }
+		        iStream.close();
+		        iStream = null;
+	            oStream.flush();
+		        oStream.close();
+		        oStream = null;
+			}catch(Exception e) {
+				canceled = true;
+				errorMsg = e.toString();
+				myApp.popUpMessage("No Data Written", "Sorry, there was an errror trying to backup the CSV file.\n"+errorMsg);
+			}
 		}
-		return myApps[0];
+		if (! canceled) {
+			try {
+				FileOutputStream oStream =  new FileOutputStream(myFile);
+				OutputStreamWriter oStreamWriter = new OutputStreamWriter(oStream);
+				BufferedWriter myWriter = new BufferedWriter(oStreamWriter);
+				myWriter.write(myApp.toCSV());
+				myWriter.close();
+			}catch(Exception e) {
+				canceled = true;
+				errorMsg = e.toString();
+				myApp.popUpMessage("No Data Written", "Sorry, there was an error trying to write the file.\n" + errorMsg);
+			}
+		}
+		if (! canceled) {
+			myApp.setFileState(true);
+			myApp.setChanged(false);
+			myApp.toastMessage("Finished Saving CSV File "+file);
+		}
 	}
 
-	protected void onProgressUpdate(Integer... progress) {
-
-    }
-	
-	protected void onCancelled(MyApplication myApp) {
-		pd.cancel();
-		myApp.setFileState(false);
-		AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-	    builder.setTitle("No Data Written");
-	    builder.setMessage("Sorry, there was an error trying to write the file.\n" + errorMsg);
-	    builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog, int arg1) {
-	            dialog.dismiss();
-	        }});
-	    builder.setCancelable(false);
-	    AlertDialog myAlertDialog = builder.create();
-	    myAlertDialog.show();
-	}
-	
-	protected void onPostExecute(MyApplication myApp) {
-		Log.i("WriteMileageData","Finishing");
-		myApp.setFileState(true);
-		myApp.setChanged(false);
-		pd.cancel();
-	}
 }

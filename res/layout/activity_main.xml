@@ -2,18 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/bkground"
     tools:context=".MainActivity"
     android:orientation="vertical" >
-    <LinearLayout android:layout_width="fill_parent"
+    
+    <TextView android:id="@+id/carName"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-	    <Button android:id="@+id/enter"
-	        android:layout_height="wrap_content"
-	        android:layout_width="wrap_content"
-	        android:text="@string/addNew"
-	        android:textSize="20sp"
-	        android:onClick="onClickCallback" />
-	</LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp" />
+    
+    <View android:layout_width="fill_parent"
+       android:layout_height="3dp"
+       android:background="@android:color/black"/>
+    
 	<TextView android:layout_height="wrap_content"
 	    android:layout_width="fill_parent"
 	    android:textSize="20sp"
@@ -25,19 +27,34 @@
 	    android:layout_height="wrap_content"
 	    android:paddingLeft="35dp"
 	    android:textSize="15sp" />
-
-	<TextView android:layout_height="wrap_content"
-	    android:layout_width="fill_parent"
-	    android:textSize="20sp"
-	    android:text="@string/last" />
-	<TextView android:id="@+id/last"
-	    android:layout_height="wrap_content"
-	    android:layout_width="fill_parent"
-	    android:paddingLeft="35dp"
-	    android:textSize="15sp" />
+	
+	<LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+		<Button android:id="@+id/enter"
+	        android:layout_height="fill_parent"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_gravity="center"
+	        android:background="@drawable/button"
+	        android:text="@string/addNew"
+	        android:textSize="20sp"
+	        android:onClick="onClickCallback" />
+		<Button android:id="@+id/seeCurrent"
+	        android:layout_height="fill_parent"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_gravity="center"
+	        android:background="@drawable/button"
+	        android:text="@string/seeCurrent"
+	        android:textSize="20sp"
+	        android:onClick="onClickCallback" />
+	</LinearLayout>
+	
 	<View android:layout_width="fill_parent"
        android:layout_height="3dp"
        android:background="@android:color/black"/>
+	
     <ExpandableListView android:id="@+id/result"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"

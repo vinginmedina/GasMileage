@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/bkground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <TextView android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/savingsUsage"
-	        android:textSize="15sp" />
+    
     <View android:layout_width="fill_parent"
-       android:layout_height="1dp"
-       android:background="@android:color/black"/>
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+    
+    <TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	    android:text="@string/savingsUsage"
+	    android:textSize="15sp" />
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="1dp"
+    	android:background="@android:color/black"/>
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="24dp"
+    	android:background="@android:color/transparent"/>
+    
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
@@ -23,9 +39,15 @@
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
 	        android:ems="20"
-	        android:inputType="numberDecimal" >
+	        android:inputType="numberDecimal"
+		    android:imeOptions="actionDone" >
 	    </EditText>
     </LinearLayout>
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="24dp"
+    	android:background="@android:color/transparent"/>
+    
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
@@ -33,12 +55,14 @@
 	        android:layout_height="wrap_content"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
+	        android:background="@drawable/button"
 	        android:text="@string/savings"
 	        android:textSize="15sp" />
 	    <Button android:id="@+id/cancel"
 	        android:layout_height="wrap_content"
 	        android:layout_width="0dp"
 	        android:layout_weight="1"
+	        android:background="@drawable/button"
 	        android:text="@string/cancel"
 	        android:textSize="15sp" />
 	</LinearLayout>

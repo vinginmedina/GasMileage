@@ -2,15 +2,20 @@
 <resources>
 
     <string name="app_name">Gas Mileage</string>
+    <string name="external_dir">GasMileage</string>
     <string name="total">Total Values</string>
     <string name="last">Last Fillup Values</string>
     <string name="addNew">Add New Mileage Data</string>
-    <string name="file_name">Open File</string>
-    <string name="reset_name">Reset File Name</string>
+    <string name="file_name">Read/Restore a File</string>
+    <string name="changeName">Change Car Name</string>
+    <string name="addNewCar">Add New Car</string>
+    <string name="switchCar">Switch Car</string>
     <string name="saveFile">Save the CSV File</string>
-    <string name="saveFileAs">Save the CSV As...</string>
+    <string name="saveFileAs">Save the CSV As&#8230;</string>
+    <string name="delete">Delete Car</string>
     <string name="email">E-Mail the CSV File</string>
     <string name="savings">Calculate Savings</string>
+    <string name="about">About</string>
     <string name="date">Date of Purchase: </string>
     <string name="newDate">Update the date</string>
     <string name="miles">Odometer Reading: </string>
@@ -18,8 +23,19 @@
     <string name="gallons">Gallons of Gas: </string>
     <string name="cost">Cost of fillup: </string>
     <string name="enter">Enter Values</string>
+    <string name="seeCurrent">See Last Fillup</string>
     <string name="cancel">Cancel</string>
     <string name="savingsUsage">Calculate the saving in gas if you were driving a car that had this MPG raiting insted of the value of your current car.</string>
     <string name="newMPG">New MPG Value</string>
+    <string name="carName">Car Name:</string>
+    <string name="csvFile">CSV File Name:</string>
+    <string name="selectFile">You can also select an existing file from this list</string>
+    <string name="needCarName">This version of Gas Mileage now supports multiple cars. You will need to enter a name for this car.</string>
+    <string name="newCarEntry">Please enter a name for your car and the name of the file to hold the data.</string>
+    <string name="changeCarName">Enter the new name that you want to use for this car.</string>
+    <string name="pickNewCar">Choose a car from the list below</string>
+    <string name="suppMessage">Thank you for installing and using this app. If you have any questions or comments, you may contact the developer via email or visit the web site.</string>
+    <string name="emailAddr">support@vinginmedina.com</string>
+    <string name="webpage">http://www.vinginmedina.com/gasmileage-menu</string>
 
 </resources>

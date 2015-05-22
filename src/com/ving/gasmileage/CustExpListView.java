@@ -1,7 +1,6 @@
 package com.ving.gasmileage;
 
 import android.content.Context;
-import android.view.View.MeasureSpec;
 import android.widget.ExpandableListView;
 
 public class CustExpListView extends ExpandableListView {

@@ -6,33 +6,58 @@
         android:showAsAction="never"
         android:title="@string/file_name"/>
     
-    <item 
-        android:id="@+id/resetFileName"
+    <item
+        android:id="@+id/changeCarName"
         android:orderInCategory="200"
         android:showAsAction="never"
-        android:title="@string/reset_name"/>
+        android:title="@string/changeName"/>
+    
+    <item
+        android:id="@+id/switchCar"
+        android:orderInCategory="300"
+        android:showAsAction="never"
+        android:title="@string/switchCar"/>
+    
+    <item 
+        android:id="@+id/addNewCar"
+        android:orderInCategory="400"
+        android:showAsAction="never"
+        android:title="@string/addNewCar"/>
+    
     <item
         android:id="@+id/saveFile"
-        android:orderInCategory="300"
+        android:orderInCategory="500"
         android:showAsAction="never"
         android:title="@string/saveFile"/>
     
     <item
         android:id="@+id/saveFileAs"
-        android:orderInCategory="400"
+        android:orderInCategory="600"
         android:showAsAction="never"
         android:title="@string/saveFileAs"/>
     
     <item
         android:id="@+id/emailFile"
-        android:orderInCategory="500"
+        android:orderInCategory="700"
         android:showAsAction="never"
         android:title="@string/email"/>
     
     <item
+        android:id="@+id/deleteCar"
+        android:orderInCategory="700"
+        android:showAsAction="never"
+        android:title="@string/delete"/>
+    
+    <item
         android:id="@+id/calcSavings"
-        android:orderInCategory="600"
+        android:orderInCategory="900"
         android:showAsAction="never"
         android:title="@string/savings"/>
+    
+    <item
+        android:id="@+id/about"
+        android:orderInCategory="1000"
+        android:showAsAction="never"
+        android:title="@string/about"/>
     
 </menu>
