@@ -88,7 +88,7 @@ public class MPGListAdapter extends BaseExpandableListAdapter {
 		        if (ExpandableListView.getPackedPositionType(id) == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
 		        	MonthData md = mYearData.get(i).getArrayMonths().get(groupPosition);
 		            AlertDialog.Builder monthDialog = new AlertDialog.Builder(mContext);
-		            monthDialog.setTitle(md.getTitle()+" Results");
+		            monthDialog.setTitle(md.getTitle()+" "+mYearData.get(i).getTitle()+" Results");
 		            monthDialog.setMessage(md.toFullString());
 		            monthDialog.setCancelable(false);
 		            monthDialog.setPositiveButton("OK",new DialogInterface.OnClickListener() {

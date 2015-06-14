@@ -46,7 +46,7 @@ public class SecondLevelAdapter extends BaseExpandableListAdapter {
 		view.setOnLongClickListener(new OnLongClickListener() {
 			public boolean onLongClick(View v) {
 				AlertDialog.Builder fillupDialog = new AlertDialog.Builder(mContext);
-	            fillupDialog.setTitle(md.purchaseDateString()+" Fillup Info");
+	            fillupDialog.setTitle("Fillup Info");
 	            fillupDialog.setMessage(md.toFullString());
 	            fillupDialog.setCancelable(false);
 	            fillupDialog.setPositiveButton("OK",new DialogInterface.OnClickListener() {

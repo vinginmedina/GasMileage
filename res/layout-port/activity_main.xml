@@ -28,13 +28,13 @@
 	    android:paddingLeft="35dp"
 	    android:textSize="15sp" />
 	
-	<LinearLayout android:layout_width="fill_parent"
+	<LinearLayout android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal" >
 		<Button android:id="@+id/enter"
 	        android:layout_height="fill_parent"
-	        android:layout_width="0dp"
-	        android:layout_weight="1"
+	        android:layout_width="wrap_content"
 	        android:layout_gravity="center"
 	        android:background="@drawable/button"
 	        android:text="@string/addNew"
@@ -42,8 +42,7 @@
 	        android:onClick="onClickCallback" />
 		<Button android:id="@+id/seeCurrent"
 	        android:layout_height="fill_parent"
-	        android:layout_width="0dp"
-	        android:layout_weight="1"
+	        android:layout_width="wrap_content"
 	        android:layout_gravity="center"
 	        android:background="@drawable/button"
 	        android:text="@string/seeCurrent"

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/bkground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/newCarEntry" />
+           
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/carName" />
+        <EditText android:id="@+id/enterCarName"
+	        android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:inputType="textNoSuggestions"
+		    android:nextFocusDown="@+id/csvFile" />
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/csvFile" />
+        <EditText android:id="@+id/csvFile"
+	        android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:inputType="textNoSuggestions"
+		    android:imeOptions="actionDone" />
+    </LinearLayout>
+    
+    <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selectFile" />
+    
+    <ListView android:id="@+id/fileList"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center" >
+	    <Button android:id="@+id/positiveB"
+	        android:background="@drawable/button"
+	        android:text="Add Car"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+	    <Button android:id="@+id/negitiveB"
+	        android:background="@drawable/button"
+	        android:text="Cancel"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

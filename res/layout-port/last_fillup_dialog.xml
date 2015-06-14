@@ -9,29 +9,48 @@
     	android:layout_height="8dp"
     	android:background="@android:color/transparent"/>
     
-    <TextView android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/pickNewCar"
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/last"
         android:textSize="20sp" />
     
     <View android:layout_width="fill_parent"
     	android:layout_height="8dp"
     	android:background="@android:color/transparent"/>
     
-    <ListView android:id="@+id/fileList"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+    <View android:layout_width="fill_parent"
+    	android:layout_height="3dp"
+    	android:background="@android:color/black"/>
     
     <View android:layout_width="fill_parent"
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+
+    <ScrollView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:scrollbars="vertical"
+		android:fillViewport="true">
+			
+		<TextView
+		    android:id="@+id/last"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:paddingLeft="15dp"
+		    android:textSize="25sp" />
+	
+	</ScrollView>
+	
+	<View android:layout_width="fill_parent"
     	android:layout_height="24dp"
     	android:background="@android:color/transparent"/>
-    
-	<Button android:id="@+id/negitiveB"
+	
+	<Button android:id="@+id/positiveB"
 	    android:background="@drawable/button"
-	    android:text="Cancel"
+	    android:text="OK"
 	    android:layout_gravity="center"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content" />
-	
+
 </LinearLayout>

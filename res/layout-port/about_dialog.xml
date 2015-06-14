@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/bkground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+    
+    <TextView android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/app_name"
+        android:textSize="20sp" />
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+    
+    <TextView android:id="@+id/versionNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp" />
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="30dp"
+    	android:background="@android:color/transparent"/>
+    
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/suppMessage" />
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="15dp"
+    	android:background="@android:color/transparent"/>
+    
+    <Button android:id="@+id/emailAddr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:background="@null" />
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="15dp"
+    	android:background="@android:color/transparent"/>
+    
+    <Button android:id="@+id/webSite" 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:background="@null" />
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+    
+    <Button android:id="@+id/positiveB"
+        android:background="@drawable/button"
+	    android:text="OK"
+	    android:layout_gravity="center"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" />
+
+</LinearLayout>

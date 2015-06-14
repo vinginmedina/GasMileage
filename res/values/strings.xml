@@ -5,7 +5,7 @@
     <string name="external_dir">GasMileage</string>
     <string name="total">Total Values</string>
     <string name="last">Last Fillup Values</string>
-    <string name="addNew">Add New Mileage Data</string>
+    <string name="addNew">Add New\nMileage Data</string>
     <string name="file_name">Read/Restore a File</string>
     <string name="changeName">Change Car Name</string>
     <string name="addNewCar">Add New Car</string>
@@ -23,7 +23,7 @@
     <string name="gallons">Gallons of Gas: </string>
     <string name="cost">Cost of fillup: </string>
     <string name="enter">Enter Values</string>
-    <string name="seeCurrent">See Last Fillup</string>
+    <string name="seeCurrent">See Last\nFillup</string>
     <string name="cancel">Cancel</string>
     <string name="savingsUsage">Calculate the saving in gas if you were driving a car that had this MPG raiting insted of the value of your current car.</string>
     <string name="newMPG">New MPG Value</string>

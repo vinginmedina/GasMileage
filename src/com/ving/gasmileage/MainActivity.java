@@ -3,6 +3,7 @@ package com.ving.gasmileage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,6 +16,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.Menu;
@@ -899,6 +901,17 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		} else {
 			finish();
 		}
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	    super.onConfigurationChanged(newConfig);
+	    setContentView(R.layout.activity_main);
+	    carName = (TextView)findViewById(R.id.carName);
+		totalArea = (TextView)findViewById(R.id.total);
+		mExpandableList = (ExpandableListView)findViewById(R.id.result);
+		setResultAdapter();
+		myApp.notifyDataSetChanged(true);
 	}
 	
 	@Override

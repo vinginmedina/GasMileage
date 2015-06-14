@@ -9,40 +9,29 @@
     	android:layout_height="8dp"
     	android:background="@android:color/transparent"/>
     
-    <TextView android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/last"
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pickNewCar"
         android:textSize="20sp" />
     
     <View android:layout_width="fill_parent"
     	android:layout_height="8dp"
     	android:background="@android:color/transparent"/>
     
-    <View android:layout_width="fill_parent"
-    	android:layout_height="3dp"
-    	android:background="@android:color/black"/>
+    <ListView android:id="@+id/fileList"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
     
     <View android:layout_width="fill_parent"
-    	android:layout_height="8dp"
-    	android:background="@android:color/transparent"/>
-
-	<TextView
-	    android:id="@+id/last"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:paddingLeft="15dp"
-	    android:textSize="25sp" />
-	
-	<View android:layout_width="fill_parent"
     	android:layout_height="24dp"
     	android:background="@android:color/transparent"/>
-	
-	<Button android:id="@+id/positiveB"
+    
+	<Button android:id="@+id/negitiveB"
 	    android:background="@drawable/button"
-	    android:text="OK"
+	    android:text="Cancel"
 	    android:layout_gravity="center"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content" />
-
+	
 </LinearLayout>
