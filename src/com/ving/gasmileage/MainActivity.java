@@ -31,6 +31,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
@@ -146,6 +147,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				final EditText miles = (EditText)dialogView.findViewById(R.id.miles);
 				final EditText gallons = (EditText)dialogView.findViewById(R.id.gallons);
 				final EditText cost = (EditText)dialogView.findViewById(R.id.cost);
+				final CheckBox calcMiles = (CheckBox)dialogView.findViewById(R.id.calcCheckBox);
+				calcMiles.setChecked(false);
 				AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
 				dialog.setView(dialogView);
 	            dialog.setTitle("Enter the new set of mileage data.");
@@ -160,6 +163,56 @@ public class MainActivity extends Activity implements OnItemClickListener {
 						datePicker.setText(dateToUse);
 			        }
 			    };
+			    calcMiles.setOnCheckedChangeListener(new OnCheckedChangeListener () {
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						if (calcMiles.isChecked()) {
+							String error = null;
+							String lastOD = null;
+							int lastODValue = 0;
+							int currODValue = 0;
+							if (od.getText().toString().equals("")) {
+								error = "Current OD Value not set";
+							} else {
+								try {
+									lastOD = myApp.lastOD(dateToUse);
+									if (lastOD.equals("")) {
+										error = "Couldn't find previous OD value";
+									} else {
+										lastODValue = Integer.parseInt(lastOD);
+										currODValue = Integer.parseInt(od.getText().toString());
+										if (currODValue <= lastODValue) {
+											error = "Entered OD value (" + currODValue +
+													") must be greater than previous OD value (" +
+													lastODValue + ")";
+										}
+									}
+								} catch (Exception e) {
+									error = e.toString();
+								}
+							}
+							if (error == null) {
+								miles.setText(String.valueOf(currODValue - lastODValue));
+								miles.setEnabled(false);
+							} else {
+								calcMiles.setChecked(false);
+								final AlertDialog.Builder errorDialog = new AlertDialog.Builder(mContext);
+					            errorDialog.setTitle("Error");
+					            errorDialog.setMessage("Could not calculate the trip mileage.\n\n"+error);
+					            errorDialog.setCancelable(false);
+					            errorDialog.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+					                public void onClick(DialogInterface di,int id) {
+					                	di.dismiss();
+					                }
+					            });
+					            errorDialog.show();
+							}
+			    		} else {
+			    			miles.setText("");
+			    			miles.setEnabled(true);
+			    		}
+					}
+			    });
 	            datePicker.setOnClickListener(new OnClickListener() {
 					public void onClick(View v) {
 						DatePickerDialog dpd = new DatePickerDialog(mContext, datePickerListener, year, month, day);

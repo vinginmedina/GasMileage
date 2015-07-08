@@ -61,6 +61,36 @@ public class MileageData implements Comparable<MileageData> {
 		}
 	}
 	
+	public MileageData(String[] newData, String oldOD) throws Exception {
+		this(calcTripMiles(newData, oldOD));
+	}
+	
+	private static String[] calcTripMiles(String[] newData, String oldOD) throws Exception {
+		String[] newNewData = new String[5];
+		try{
+			if ((newData[1] == null) || (newData[1].equals(""))) {
+				throw new IllegalArgumentException("Current OD Value not set");
+			}
+			if ((oldOD == null) || (oldOD.equals(""))) {
+				throw new IllegalArgumentException("Couldn't find previous OD value");
+			}
+			int trpMiles = Integer.parseInt(newData[1]) - Integer.parseInt(oldOD);
+			if (trpMiles < 1) {
+				throw new IllegalArgumentException("Entered OD value (" + newData[1] +
+						") less than previous OD value (" + oldOD + ")");
+			}
+			newNewData[0] = newData[0];
+			newNewData[1] = newData[1];
+			newNewData[2] = String.valueOf(trpMiles);
+			newNewData[3] = newData[3];
+			newNewData[4] = newData[4];
+		}catch(Exception e){
+			throw new Exception(e);
+		}
+		
+		return newNewData;
+	}
+	
 	public int compareTo(MileageData md) {
 		int rtn = this.purchaseDate.compareTo(md.purchaseDate);
 		
@@ -102,6 +132,14 @@ public class MileageData implements Comparable<MileageData> {
 	            ",$" + String.format("%.2f", price) + ",$" + String.format("%.2f", dpg) +
 	            "," + String.format("%.1f", mpg) + ",$" + String.format("%.2f", ppm) + "\n";
 		return rtn;
+	}
+	
+	public Calendar purchaseDate() {
+		return purchaseDate;
+	}
+	
+	public String OD() {
+		return od;
 	}
 	
 	public float miles() {

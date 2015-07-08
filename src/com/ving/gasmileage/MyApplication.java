@@ -1,8 +1,10 @@
 package com.ving.gasmileage;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.io.File;
+
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
@@ -262,6 +264,43 @@ public class MyApplication extends Application {
 				}
 		    }
 		}
+		return rtn;
+	}
+	
+	public String lastOD(String dateToUse) throws Exception {
+		String rtn = "";
+		int month;
+		int day;
+		int year;
+		String[] dateVals = dateToUse.split("/");
+		if (dateVals.length != 3) {
+			throw new IllegalArgumentException("Date should be in format mm/dd/yyyy");
+		}
+		if (dateVals[0].equals("")) {
+			throw new IllegalArgumentException("Value for month is empty");
+		} else {
+			month = Integer.parseInt(dateVals[0]) - 1;
+		}
+		if (dateVals[1].equals("")) {
+			throw new IllegalArgumentException("Value for day is empty");
+		} else {
+			day = Integer.parseInt(dateVals[1]);
+		}
+		if (dateVals[2].equals("")) {
+			throw new IllegalArgumentException("Value for year is empty");
+		}
+		Calendar purchaseDate = Calendar.getInstance();
+		purchaseDate.set(Integer.parseInt(dateVals[2]), Integer.parseInt(dateVals[0]) - 1, Integer.parseInt(dateVals[1]));
+		for (YearData yD : expandDataArray) {
+			for (MonthData mD : yD.getArrayMonths()) {
+				for (MileageData md: mD.getArrayDays()) {
+					if (md.purchaseDate().before(purchaseDate)) {
+						rtn = md.OD();
+					}
+ 				}
+		    }
+		}
+		
 		return rtn;
 	}
 	

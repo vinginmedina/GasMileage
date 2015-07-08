@@ -70,6 +70,14 @@
 	        android:ems="15"
 	        android:inputType="numberDecimal" >
 	    </EditText>
+	    <CheckBox android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:checked="false"
+			android:id="@+id/calcCheckBox" />
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="15sp"
+			android:text="Calc Trip" />
     </LinearLayout>
     
     <View android:layout_width="fill_parent"
