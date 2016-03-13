@@ -22,6 +22,7 @@
     <string name="trip">Trip Miles: </string>
     <string name="gallons">Gallons of Gas: </string>
     <string name="cost">Cost of fillup: </string>
+    <string name="notes">Notes: </string>
     <string name="enter">Enter Values</string>
     <string name="seeCurrent">See Last\nFillup</string>
     <string name="cancel">Cancel</string>

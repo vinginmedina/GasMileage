@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,10 +16,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,6 +44,7 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnItemClickListener {
 
+	private static final int MY_PERMISSIONS_REQUEST_WRITE = 1;
 	private static final int UNDEF = 0;
 	private static final int SWITCH_CAR = 1;
 	private static final int DELETE_CAR = 2;
@@ -83,8 +88,40 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		setResultAdapter();
 		settings = getPreferences(MODE_PRIVATE);
 		myApp.setSharedPreferences(settings);
-		InitData initTask = new InitData(this, mContext);
-		initTask.execute(myApp);
+		if (ContextCompat.checkSelfPermission(mContext,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+			ActivityCompat.requestPermissions(this,
+	                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+	                MY_PERMISSIONS_REQUEST_WRITE);
+		} else {
+			InitData initTask = new InitData(this, mContext);
+			initTask.execute(myApp);
+		}
+	}
+	
+	@Override
+	public void onRequestPermissionsResult(int requestCode,
+	        String permissions[], int[] grantResults) {
+	    switch (requestCode) {
+	        case MY_PERMISSIONS_REQUEST_WRITE: {
+	            if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+	            	InitData initTask = new InitData(this, mContext);
+	    			initTask.execute(myApp);
+	            } else {
+	            	AlertDialog.Builder errorDialog = new AlertDialog.Builder(mContext);
+	            	errorDialog.setTitle("Without permission this application cannot function.");
+            		errorDialog.setCancelable(false);
+            		errorDialog.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+    	                public void onClick(DialogInterface dialog,int id) {
+    	                	dialog.dismiss();
+    	                	finish();
+    	                }
+    	            });
+            		errorDialog.show();
+	            }
+	            return;
+	        }
+	    }
 	}
 	
 	public void setResultAdapter() {
@@ -147,6 +184,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				final EditText miles = (EditText)dialogView.findViewById(R.id.miles);
 				final EditText gallons = (EditText)dialogView.findViewById(R.id.gallons);
 				final EditText cost = (EditText)dialogView.findViewById(R.id.cost);
+				final EditText notes = (EditText)dialogView.findViewById(R.id.notes);
 				final CheckBox calcMiles = (CheckBox)dialogView.findViewById(R.id.calcCheckBox);
 				calcMiles.setChecked(false);
 				AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
@@ -228,12 +266,13 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					public void onClick(View v) {
 						InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 						imm.hideSoftInputFromWindow(od.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-						String[] newData = new String[5];
+						String[] newData = new String[6];
 						newData[0] = dateToUse;
 						newData[1] = od.getText().toString();
 						newData[2] = miles.getText().toString();
 						newData[3] = gallons.getText().toString();
 						newData[4] = cost.getText().toString();
+						newData[5] = notes.getText().toString();
 						MileageData md;
 						try {
 							md = new MileageData(newData);
@@ -502,12 +541,14 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	}
 	
 	public ArrayList<String> existCSVFiles() {
-		File files[] = myApp.baseDirectory().listFiles();
 		ArrayList<String> existCSVFiles = new ArrayList<String>();
-		for (File file : files) {
-			String fileName = file.getName();
-			if ((! myApp.carInfo().csvFileList().contains(fileName)) && (fileName.endsWith(".csv"))) {
-				existCSVFiles.add(fileName);
+		File files[] = myApp.baseDirectory().listFiles();
+		if ((files != null) && (files.length > 0)) {
+			for (File file : files) {
+				String fileName = file.getName();
+				if ((! myApp.carInfo().csvFileList().contains(fileName)) && (fileName.endsWith(".csv"))) {
+					existCSVFiles.add(fileName);
+				}
 			}
 		}
 		

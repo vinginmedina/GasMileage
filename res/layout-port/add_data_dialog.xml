@@ -115,13 +115,36 @@
 	        android:textSize="15sp" />
 	    <EditText
 	        android:id="@+id/cost"
-	        android:nextFocusDown="@+id/enter"
+	        android:nextFocusDown="@+id/notes"
 	        android:layout_width="0dip"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
 	        android:ems="15"
-	        android:inputType="numberDecimal"
-	        android:imeOptions="actionDone" />
+	        android:inputType="numberDecimal" />
+    </LinearLayout>
+    
+    <View android:layout_width="fill_parent"
+    	android:layout_height="8dp"
+    	android:background="@android:color/transparent"/>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notes"
+            android:textSize="15sp" />
+        <EditText
+            android:id="@+id/notes"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="15"
+            android:imeOptions="actionDone"
+            android:inputType="textShortMessage"
+            android:nextFocusDown="@+id/enter" />
     </LinearLayout>
     
     <View android:layout_width="fill_parent"

@@ -13,9 +13,13 @@ public class MileageData implements Comparable<MileageData> {
 	private float dpg;
 	private float mpg;
 	private float ppm;
+	private String notes;
 	
 	public MileageData(String[] newData) throws Exception {
 		try{
+			if (newData.length < 5) {
+				throw new IllegalArgumentException("Not all values supplied.");
+			}
 			String[] dateVals = newData[0].split("/");
 			if (dateVals.length != 3) {
 				throw new IllegalArgumentException("Date should be in format mm/dd/yyyy");
@@ -56,6 +60,13 @@ public class MileageData implements Comparable<MileageData> {
 			dpg = price / gallons;
 			mpg = trip / gallons;
 			ppm = price / trip;
+			if ((newData.length == 6) && (! newData[5].equals(""))) {
+				notes = newData[5];
+			} else if ((newData.length > 8) && (! newData[8].equals(""))) {
+				notes = newData[8];
+			} else {
+				notes = null;
+			}
 		}catch(Exception e){
 			throw new Exception(e);
 		}
@@ -66,7 +77,7 @@ public class MileageData implements Comparable<MileageData> {
 	}
 	
 	private static String[] calcTripMiles(String[] newData, String oldOD) throws Exception {
-		String[] newNewData = new String[5];
+		String[] newNewData = new String[6];
 		try{
 			if ((newData[1] == null) || (newData[1].equals(""))) {
 				throw new IllegalArgumentException("Current OD Value not set");
@@ -84,6 +95,11 @@ public class MileageData implements Comparable<MileageData> {
 			newNewData[2] = String.valueOf(trpMiles);
 			newNewData[3] = newData[3];
 			newNewData[4] = newData[4];
+			if (newData.length > 5) {
+				newNewData[5] = newData[5];
+			} else {
+				newNewData[5] = null;
+			}
 		}catch(Exception e){
 			throw new Exception(e);
 		}
@@ -123,6 +139,9 @@ public class MileageData implements Comparable<MileageData> {
 				"\nGas Price: $" + String.format("%.2f",dpg) + "\nMPG: " +
 				String.format("%.1f", mpg) +
 				"\nPPM: $" + String.format("%.2f", ppm);
+		if ((notes != null) && (! notes.equals(""))) {
+			rtn += "\nNotes: " + notes;
+		}
 		return rtn;
 	}
 	
@@ -130,7 +149,11 @@ public class MileageData implements Comparable<MileageData> {
 		String rtn = this.purchaseDateString() + "," + od + "," +
 	            String.format("%.1f", trip) + "," + String.format("%.3f", gallons) +
 	            ",$" + String.format("%.2f", price) + ",$" + String.format("%.2f", dpg) +
-	            "," + String.format("%.1f", mpg) + ",$" + String.format("%.2f", ppm) + "\n";
+	            "," + String.format("%.1f", mpg) + ",$" + String.format("%.2f", ppm) + ",";
+		if (notes != null) {
+			rtn += notes;
+		}
+		rtn += "\n";
 		return rtn;
 	}
 	
@@ -164,6 +187,15 @@ public class MileageData implements Comparable<MileageData> {
 	
 	public float ppm() {
 		return ppm;
+	}
+	
+	public String notes() {
+		String rtn = "";
+		if (notes != null) {
+			rtn = notes;
+		}
+		
+		return rtn;
 	}
 	
 	public float savings(float newMPG) {
