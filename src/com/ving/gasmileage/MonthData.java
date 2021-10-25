@@ -90,7 +90,7 @@ public class MonthData implements Comparable<MonthData> {
     }
     
     public String toString() {
-    	return mTitle + " Average MPG: " + String.format("%.1f", mpg);
+    	return mTitle + " Average MPG: " + String.format("%.1f", mpg) + " blah blah blah";
     }
     
     public String toFullString() {

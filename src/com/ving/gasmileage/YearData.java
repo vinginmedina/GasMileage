@@ -79,7 +79,7 @@ public class YearData implements Comparable<YearData> {
     }
     
     public String toString() {
-    	return mTitle + "  Average MPG: " + String.format("%.1f",  mpg);
+    	return mTitle + "  Average MPG: " + String.format("%.1f",  mpg) + " blah blah blah blah";
     }
     
     public String toFullString() {

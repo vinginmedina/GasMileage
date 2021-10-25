@@ -55,8 +55,8 @@
        android:background="@android:color/black"/>
 	
     <ExpandableListView android:id="@+id/result"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:transcriptMode="alwaysScroll"
                         android:cacheColorHint="#00000000"
                         android:listSelector="@android:color/transparent"/>
